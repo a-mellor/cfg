@@ -1,0 +1,9 @@
+*~
+.DS_Store
+.ackrc
+dump.rdb
+
+# ignore vim’s swap files
+*.swp
+*.swo
+
