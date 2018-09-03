@@ -33,6 +33,9 @@ alias gpl='git pull'
 alias gs='git status'
 alias glo='git log --oneline --decorate'
 alias gca='git commit --amend'
+alias gbr='git branch'
+alias gcm='git commit -m'
+
 
 # ruby: bundle exec shortcuts
 alias be='bundle exec'
