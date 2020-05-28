@@ -17,3 +17,5 @@
 	trustExitCode = true
 [credential]
 	helper = osxkeychain
+[diff "ansible-vault"]
+	textconv = ansible-vault view

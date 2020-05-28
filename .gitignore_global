@@ -7,3 +7,10 @@ dump.rdb
 *.swp
 *.swo
 
+vim-markdown-preview.html
+
+# asdf
+.tool-versions
+
+# rails logs
+log/*
