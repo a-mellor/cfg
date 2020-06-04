@@ -1,9 +1,3 @@
-"  if $SHELL =~ 'bin/fish'
-" 
-"    set shell=/bin/sh
-"  endif
-
-
 " Plug
 call plug#begin('~/.vim/plugged')
 
@@ -31,23 +25,38 @@ Plug 'wikitopian/hardmode'
 
 call plug#end()
 
+" ========================================
+" Settings
+" ========================================
+" tabs
 set tabstop=2     "tab width
 set shiftwidth=2  "indent size
 set expandtab     "use space to instead the tab character
 set smarttab
-
-syntax enable
-
-" Leader
-let mapleader = " "
-let maplocalleader = " "
 
 " Line numbers
 set relativenumber
 set number
 set ruler  
 
+" Scroll at bottom of file
+set so=7
+
+" 80 chars/line
+set textwidth=0
+if exists('&colorcolumn')
+  set colorcolumn=80
+endif
+
+" Keep the cursor on the same column
+set nostartofline
+
+" Allow switching buffers without saving
+set hidden
+
+" ========================================
 " Colours
+" ========================================
 syntax enable
 set termguicolors     " enable true colors support
 " let ayucolor="light"  " for light version of theme
@@ -55,44 +64,39 @@ set termguicolors     " enable true colors support
 let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 set background=dark
+
 " set t_Co=256
-" let g:airline_theme='base16-default-dark'
-" set termguicolors
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 " highlight Normal guibg=none
 " highlight NonText guibg=none
 
-
-" Scroll at bottom of file
-set so=7
-
-" Remap
+" ========================================
+" Mappings
+" ========================================
+" ; as :
 noremap ; :
+
+" Movement in normal mode
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>b :NERDTreeFind<CR>
+
+" Set Leader
+let mapleader = " "
+let maplocalleader = " "
+
+" Writing
 nmap <leader>s :w<CR>
 nmap <leader><leader> <C-^>
+
+" Tab navigation
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
-" Set shortcut to get out of normal mode
+" Escaping
 imap jj <esc>
-
-" CtrlP settinngs
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_max_files = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|\.hg|\.svn|_site|target|node_modules|bower_components|_build|dist|output|elm-stuff|coverage|deps|tmp)$',
-  \ }
-
-" copy to clipboard
-vmap <C-x> :!pbcopy<CR>
-vmap <C-c> :w !pbcopy<CR><CR>
 
 " disable arrow keys
 noremap <Up> <NOP>
@@ -100,24 +104,40 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Allow switching buffers without saving
-set hidden
-
+" Toggle search highlighting
 map <leader>h :set hlsearch!<cr>
 
-" Get out of terminal mode with <Esc>
+" Exit terminal mode with <Esc>
 tnoremap <Esc> <C-\><C-n>
 
-" Markdown preview on write
-let vim_markdown_preview_github=1 " use github flavoured markdown
-let vim_markdown_preview_toggle=2 " render preivew on write to buffer
-let vim_markdown_preview_browser='Google Chrome'
+" copy to clipboard
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" ========================================
+" NERD Tree
+" ========================================
+" Open and close
+nmap <leader>n :NERDTreeToggle<CR>
+" Show current file
+nmap <leader>b :NERDTreeFind<CR>
+" View hidden files
+let NERDTreeShowHidden=1
 
-" Format elixir files
+" ========================================
+" CtrlP 
+" ========================================
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.git|\.hg|\.svn|_site|target|node_modules|bower_components|_build|dist|output|elm-stuff|coverage|deps|tmp)$',
+  \ }
+
+" ========================================
+" Elixir
+" ========================================
+
+" Format files
 let g:neoformat_elixir_exfmt = {
   \ 'exe': 'mix',
   \ 'args': ['format'],
@@ -132,13 +152,16 @@ augroup filetype_elixir
   autocmd BufWritePre *.exs Neoformat
 augroup END
 
-" Go tabs
+" ========================================
+" Go
+" ========================================
+" Tabs
 au FileType go set noexpandtab
 au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
-" Go highlighting
+"  Highlighting
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -150,6 +173,3 @@ let g:go_highlight_types = 1
 
 " Auto import dependencies 
 let g:go_fmt_command = "goimports"
-
-" View hidden files in Nerdtree
-let NERDTreeShowHidden=1
