@@ -11,7 +11,6 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
-Plug 'OmniSharp/omnisharp-vim', { 'for': 'C#' }
 Plug 'rhysd/clever-f.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
@@ -65,11 +64,12 @@ let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 set background=dark
 
-" set t_Co=256
+" Highlighting 
+" https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
-" highlight Normal guibg=none
-" highlight NonText guibg=none
+highlight Normal guibg=none
+highlight NonText guibg=none
 
 " ========================================
 " Mappings
@@ -77,7 +77,7 @@ highlight NonText ctermbg=none
 " ; as :
 noremap ; :
 
-" Movement in normal mode
+" Easier navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -98,7 +98,7 @@ nnoremap <C-Right> :tabnext<CR>
 " Escaping
 imap jj <esc>
 
-" disable arrow keys
+" Disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -110,7 +110,7 @@ map <leader>h :set hlsearch!<cr>
 " Exit terminal mode with <Esc>
 tnoremap <Esc> <C-\><C-n>
 
-" copy to clipboard
+" Copy to clipboard
 vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>
 
