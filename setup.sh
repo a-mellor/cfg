@@ -74,6 +74,7 @@ DIR="$(pwd -P)"
 echo "Moving dotfiles from $DIR to $HOME..."
 cp -R $DIR/.config/* $HOME/.config/
 cp $DIR/.aliases.sh $HOME
+cp $DIR/.asdfrc.sh $HOME
 cp $DIR/.bash_profile $HOME
 cp $DIR/.gitconfig $HOME
 cp $DIR/.gitignore_global $HOME
@@ -83,4 +84,11 @@ cp $DIR/.vimrc $HOME
 # =================
 # Manage languae versions with asdf
 # =================
+
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+
+
 
